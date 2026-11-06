@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dd57ud7g1kduq"]
+
+[ext_resource type="Script" uid="uid://ltajut3cc168" path="res://components/MoveComponent.cs" id="1_g1227"]
+[ext_resource type="Script" uid="uid://cs8jkfmnm65sj" path="res://components/HealthComponent.cs" id="2_a0r0o"]
+[ext_resource type="Script" uid="uid://b2ifwwdbih22i" path="res://components/DamagingComponent.cs" id="3_a0r0o"]
+[ext_resource type="Script" uid="uid://io52uof8hk24" path="res://components/VisibilityComponent.cs" id="4_thrac"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41u6b"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ng5j8"]
+material = SubResource("StandardMaterial3D_41u6b")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_roq8x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4kxuq"]
+radius = 0.51535267
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mti6b"]
+radius = 4.0743546
+
+[node name="Crawler" type="CharacterBody3D" unique_id=1512909202 groups=["Enemy"]]
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1364395454]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5008004, 0)
+mesh = SubResource("SphereMesh_ng5j8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=510478710]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.52590585, 0)
+shape = SubResource("SphereShape3D_roq8x")
+
+[node name="MoveComponent" type="Node" parent="." unique_id=174152592]
+script = ExtResource("1_g1227")
+Speed = 1.0
+StopRadius = 0.0
+metadata/_custom_type_script = "uid://ltajut3cc168"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1532336036]
+script = ExtResource("2_a0r0o")
+MaxHealth = 50.0
+metadata/_custom_type_script = "uid://cs8jkfmnm65sj"
+
+[node name="DamagingComponent" type="Area3D" parent="." unique_id=1491802567]
+collision_mask = 2
+script = ExtResource("3_a0r0o")
+TargetGroup = "Player"
+IsOneShot = false
+metadata/_custom_type_script = "uid://b2ifwwdbih22i"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamagingComponent" unique_id=1152439499]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.4907596, 0)
+shape = SubResource("SphereShape3D_4kxuq")
+
+[node name="VisibilityComponent" type="Area3D" parent="." unique_id=1112363457 node_paths=PackedStringArray("moveComponent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26790762, 0)
+collision_mask = 2
+script = ExtResource("4_thrac")
+moveComponent = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://io52uof8hk24"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisibilityComponent" unique_id=1737655612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16263092, 0)
+shape = SubResource("SphereShape3D_mti6b")
+
+[connection signal="body_entered" from="DamagingComponent" to="DamagingComponent" method="OnBodyEntered"]

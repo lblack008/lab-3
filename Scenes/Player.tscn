@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bo8n1u4j0hyig"]
+
+[ext_resource type="Script" uid="uid://dqcbx8u1dv8n8" path="res://scripts/Player.cs" id="1_p0vlq"]
+[ext_resource type="PackedScene" uid="uid://cqk87l7jt1i51" path="res://scenes/Bullet.tscn" id="3_3li8b"]
+[ext_resource type="Script" uid="uid://dcae83u8q5ejc" path="res://components/BuildingComponent.cs" id="3_mdl7e"]
+[ext_resource type="PackedScene" uid="uid://cbvyr2ilwwbl6" path="res://scenes/Tower.tscn" id="4_70d11"]
+[ext_resource type="PackedScene" uid="uid://hajjkwcxbbqh" path="res://scenes/ExposionTower.tscn" id="5_cw2d6"]
+[ext_resource type="PackedScene" uid="uid://lfbgaelg4rb" path="res://scenes/FreezeTower.tscn" id="6_khinc"]
+[ext_resource type="PackedScene" uid="uid://djnenydylx1il" path="res://scenes/TowerPreview.tscn" id="7_khinc"]
+[ext_resource type="PackedScene" uid="uid://wt84mabh2a7f" path="res://scenes/FreezeTowerPreview.tscn" id="8_bruh7"]
+[ext_resource type="PackedScene" uid="uid://dpvw882sr2sy4" path="res://scenes/ExposionTowerPreview.tscn" id="9_bruh7"]
+[ext_resource type="Script" uid="uid://cs8jkfmnm65sj" path="res://components/HealthComponent.cs" id="10_6eyey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mti6b"]
+albedo_color = Color(0.3764706, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4kxuq"]
+material = SubResource("StandardMaterial3D_mti6b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p0vlq"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1320427403 node_paths=PackedStringArray("_camera") groups=["Player"]]
+collision_layer = 2
+script = ExtResource("1_p0vlq")
+BulletScene = ExtResource("3_3li8b")
+_camera = NodePath("Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1452224668]
+mesh = SubResource("BoxMesh_4kxuq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1582752179]
+shape = SubResource("BoxShape3D_p0vlq")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1463285377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="BuildingComponent" type="Node3D" parent="." unique_id=1470302678 node_paths=PackedStringArray("PreviewsTowers")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+script = ExtResource("3_mdl7e")
+TowerScenes = Array[PackedScene]([ExtResource("4_70d11"), ExtResource("5_cw2d6"), ExtResource("6_khinc")])
+PreviewsTowers = [NodePath("Tower"), NodePath("ExposionTower"), NodePath("FreezeTower")]
+metadata/_custom_type_script = "uid://dcae83u8q5ejc"
+
+[node name="ExposionTower" parent="BuildingComponent" unique_id=933774117 instance=ExtResource("9_bruh7")]
+visible = false
+
+[node name="FreezeTower" parent="BuildingComponent" unique_id=521514586 instance=ExtResource("8_bruh7")]
+visible = false
+
+[node name="Tower" parent="BuildingComponent" unique_id=1217166878 instance=ExtResource("7_khinc")]
+visible = false
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1745231567]
+script = ExtResource("10_6eyey")
+MaxHealth = 1000.0
+metadata/_custom_type_script = "uid://cs8jkfmnm65sj"

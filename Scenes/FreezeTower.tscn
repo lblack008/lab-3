@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://lfbgaelg4rb"]
+
+[ext_resource type="Script" uid="uid://cs8jkfmnm65sj" path="res://components/HealthComponent.cs" id="1_ffbbk"]
+[ext_resource type="Script" uid="uid://b40fiomr5x2yx" path="res://components/ShootComponent.cs" id="2_dah1r"]
+[ext_resource type="PackedScene" uid="uid://bo6no6rvisho2" path="res://scenes/Freezer.tscn" id="2_hbj6n"]
+[ext_resource type="Script" uid="uid://io52uof8hk24" path="res://components/VisibilityComponent.cs" id="4_4vcdn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w51jx"]
+radius = 0.2211914
+height = 1.7885742
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dv47"]
+albedo_color = Color(0.11764706, 1, 0.7372549, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m6jyl"]
+material = SubResource("StandardMaterial3D_6dv47")
+top_radius = 0.2
+height = 0.9975586
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pmem"]
+albedo_color = Color(0.08235294, 0.39215687, 0.30588236, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_j0n0f"]
+material = SubResource("StandardMaterial3D_6pmem")
+top_radius = 0.1
+bottom_radius = 0.28076172
+height = 1.2841797
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xw7cn"]
+radius = 10.437848
+
+[node name="FreezeTower" type="CharacterBody3D" unique_id=521514586 groups=["Player"]]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=717496206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31176758, 0)
+shape = SubResource("CapsuleShape3D_w51jx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1212842114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5007324, 0)
+mesh = SubResource("CylinderMesh_m6jyl")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1655132606]
+script = ExtResource("1_ffbbk")
+MaxHealth = 120.0
+metadata/_custom_type_script = "uid://cs8jkfmnm65sj"
+
+[node name="ShootComponent" type="Node3D" parent="." unique_id=1901980445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0066403, 0)
+script = ExtResource("2_dah1r")
+bulletScene = ExtResource("2_hbj6n")
+metadata/_custom_type_script = "uid://b40fiomr5x2yx"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShootComponent" unique_id=1667790744]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0.1155802, 0)
+mesh = SubResource("CylinderMesh_j0n0f")
+
+[node name="VisibityComponent" type="Area3D" parent="." unique_id=1540420561 node_paths=PackedStringArray("shootComponent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0009131, 0)
+collision_layer = 2
+script = ExtResource("4_4vcdn")
+shootComponent = NodePath("../ShootComponent")
+metadata/_custom_type_script = "uid://io52uof8hk24"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisibityComponent" unique_id=1667423105]
+shape = SubResource("SphereShape3D_xw7cn")

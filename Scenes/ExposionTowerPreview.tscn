@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dpvw882sr2sy4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssg5m"]
+transparency = 1
+albedo_color = Color(0.627451, 0.9843137, 0.5686275, 0.50980395)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g5ydv"]
+material = SubResource("StandardMaterial3D_ssg5m")
+top_radius = 0.2
+height = 0.9975586
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3edmn"]
+transparency = 1
+albedo_color = Color(0.047058824, 0.38431373, 0.4, 0.50980395)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_eogbf"]
+material = SubResource("StandardMaterial3D_3edmn")
+top_radius = 0.1
+bottom_radius = 0.28076172
+height = 1.2841797
+
+[node name="ExposionTower" type="CharacterBody3D" unique_id=933774117 groups=["Player"]]
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=375582737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5007324, 0)
+mesh = SubResource("CylinderMesh_g5ydv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1867369145]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 1.1222205, 0)
+mesh = SubResource("CylinderMesh_eogbf")

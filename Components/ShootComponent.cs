@@ -6,22 +6,18 @@ public partial class ShootComponent : Node3D
 {
 	// параметры пули
 	[Export]
-	private PackedScene BulletScene;
+	private PackedScene bulletScene;
 	[Export]
-	private float BulletDamage = 10f;
-	[Export]
-	private float BulletSpeed = 100f;
-	[Export]
-	private float FireRate = 2f;
+	private float fireRate = 2f;
 
-	private Node3D Target;
+	private Node3D target;
 	// таймер для количества выстрелов в секунду
 	private Timer shootTimer = new Timer();
 
 	// в начале игры задаётся время перезарядки выстрелов
     public override void _Ready()
     {
-        shootTimer.WaitTime = 1.0f / FireRate;
+        shootTimer.WaitTime = 1.0f / fireRate;
 		shootTimer.OneShot = false;
 		AddChild(shootTimer);
 
@@ -31,25 +27,17 @@ public partial class ShootComponent : Node3D
 	// попытка выстрела
 	private void TryShoot()
 	{
-		if (BulletScene != null)
-		{
-			SpawnBullet();
-		}
-		else
-		{
-			GD.Print("No bullet scene attached!");
-		}
+		if (bulletScene != null) SpawnBullet();
+		else GD.Print("No bullet scene attached!");
 	}
 
 	// создание пули на сцене при выстреле
 	private void SpawnBullet()
 	{
-		Bullet bullet = BulletScene.Instantiate<Bullet>();
+		Area3D bullet = bulletScene.Instantiate<Area3D>();
 		GetTree().CurrentScene.AddChild(bullet);
 		bullet.GlobalPosition = GlobalPosition;
 		bullet.GlobalRotation = GlobalRotation;
-		bullet.SetDamage(BulletDamage);
-		bullet.SetSpeed(BulletSpeed);
 	}
 
 	// включение пушки
@@ -67,26 +55,24 @@ public partial class ShootComponent : Node3D
 	// сеттер для цели
 	public void SetTarget(Node3D target)
 	{
-		Target = target;
+		this.target = target;
 	}
 
 	// если цель есть - выстрел, иначе - пушка просто крутится 
     public override void _Process(double delta)
     {
 		// проверка, существует ли цель
-        if (GodotObject.IsInstanceValid(Target))
+        if (GodotObject.IsInstanceValid(target))
 		{
-			GD.Print("I caught an enemy!");
-			LookAt(Target.GlobalPosition);
+			// GD.Print("I caught an enemy!");
+			Vector3 TargetPos = new Vector3(target.GlobalPosition.X, this.GlobalPosition.Y + 0.05f, target.GlobalPosition.Z);
+			LookAt(TargetPos);
 			TurnOnCannon();
 		}
 		else
 		{
 			// если после удаления цели она всё ещё не нулевая - она зануляется искусственно
-			if (Target != null) 
-			{
-				Target = null;
-			}
+			if (target != null) target = null;
 
 			// выключение пушки
 			TurnOffCannon();

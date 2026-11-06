@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://wt84mabh2a7f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dv47"]
+transparency = 1
+albedo_color = Color(0.11764706, 1, 0.7372549, 0.50980395)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m6jyl"]
+material = SubResource("StandardMaterial3D_6dv47")
+top_radius = 0.2
+height = 0.9975586
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pmem"]
+transparency = 1
+albedo_color = Color(0.08235294, 0.39215687, 0.30588236, 0.50980395)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_j0n0f"]
+material = SubResource("StandardMaterial3D_6pmem")
+top_radius = 0.1
+bottom_radius = 0.28076172
+height = 1.2841797
+
+[node name="FreezeTower" type="CharacterBody3D" unique_id=521514586 groups=["Player"]]
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1212842114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5007324, 0)
+mesh = SubResource("CylinderMesh_m6jyl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1667790744]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 1.1222205, 0)
+mesh = SubResource("CylinderMesh_j0n0f")

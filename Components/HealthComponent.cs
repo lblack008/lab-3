@@ -9,7 +9,13 @@ public partial class HealthComponent : Node
 	protected float MaxHealth = 100f;
 	// родительскиий узел
 	private Node3D parentNode;
+	// текущее здоровье
 	protected float CurrentHealth = 100f;
+
+	public float GetCurrentHealth()
+	{
+		return CurrentHealth;
+	}
 
 	// в начале игры происходит поиск родительского узла и задаётся здоровье
     public override void _Ready()
@@ -32,6 +38,13 @@ public partial class HealthComponent : Node
 	// "смерть" объекта
 	private void Die()
 	{
+		if (parentNode.IsInGroup("Enemy")) GameManager.Instance.AddMetal(50);
+		if (parentNode is Core)
+		{
+			GameManager.Instance.GameOver();
+			return;
+		}
+
 		parentNode.QueueFree();
 	}
 }

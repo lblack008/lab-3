@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class VisibityComponent : Area3D
+public partial class VisibilityComponent : Area3D
 {
 	// другие компоненты
 	[Export]
@@ -11,7 +11,7 @@ public partial class VisibityComponent : Area3D
 	public ShootComponent shootComponent;
 	private Node3D ParentNode;
 	private Godot.Collections.Array<Node3D> detectedBodies = new Godot.Collections.Array<Node3D>();
-	private Node3D Target;
+	private Node3D target;
 
 	// проверка работы коллизии 
 	public override void _Ready()
@@ -35,6 +35,8 @@ public partial class VisibityComponent : Area3D
 	// проверка, что объекты принадлежат к одной группе объектов
 	private void OnBodyEntered(Node3D body)
 	{
+		// GD.Print($"В зону видимости башни {GetParent().Name} вошел объект: {body.Name}");
+
 		bool isInSameGroup = false;
 		if (
 			(body.IsInGroup("Enemy") && ParentNode.IsInGroup("Enemy")) 
@@ -73,14 +75,8 @@ public partial class VisibityComponent : Area3D
 				closestBody = detectedBodies[i];
 			}
 		}
-		Target = closestBody;
-		if (shootComponent != null)
-		{
-			shootComponent.SetTarget(Target);
-		}
-		if (moveComponent != null)
-		{
-			moveComponent.SetTarget(Target);
-		}
+		target = closestBody;
+		if (shootComponent != null) shootComponent.SetTarget(target);
+		if (moveComponent != null) moveComponent.SetTarget(target);
 	}
 }

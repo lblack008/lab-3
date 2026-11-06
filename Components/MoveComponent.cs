@@ -6,10 +6,10 @@ public partial class MoveComponent : Node
 {
 	// параметры для движения
 	[Export]
-	protected float Speed = 50f;
+	protected float speed = 50f;
 	[Export]
-	protected float StopRadius = 0.5f;
-	protected Node3D Target;
+	protected float stopRadius = 3f;
+	protected Node3D target;
 	protected CharacterBody3D parentNode;
 
 	// в начале игры проверка, что родительский узел - character3d
@@ -24,7 +24,17 @@ public partial class MoveComponent : Node
 	// сеттер для цели
 	public void SetTarget(Node3D target)
 	{
-		Target = target;
+		this.target = target;
+	}
+
+	public float GetSpeed()
+	{
+		return speed;
+	}
+
+	public void SetSpeed(float speed)
+	{
+		this.speed = speed;
 	}
 
 	// если родительский узел существует - он двигается
@@ -42,21 +52,21 @@ public partial class MoveComponent : Node
 		// задаётся позиция цели (если её нет, движение в (0, 0, 0))
 		Vector3 targetDistance;
 		Vector3 position = Vector3.Zero;
-		if (Target != null)
+		if (target != null)
 		{
-			position = Target.GlobalPosition;
+			position = target.GlobalPosition;
 		}
 		targetDistance = position - p.GlobalPosition;
 		Vector3 direction = targetDistance.Normalized();
 		
 		Vector3 velocity = Vector3.Zero;
-		if (targetDistance.Length() > StopRadius)
+		if (targetDistance.Length() > stopRadius)
 		{
-			velocity = new Vector3(direction.X * Speed, 0, direction.Z * Speed);
+			velocity = new Vector3(direction.X * speed, 0, direction.Z * speed);
 		}
 		// движение к цели
 		p.Velocity = velocity;
 		p.MoveAndSlide();
-		GD.Print("My target is " + position);
+		// GD.Print("My target is " + position);
 	}
 }
