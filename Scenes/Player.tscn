@@ -36,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 
 [node name="BuildingComponent" type="Node3D" parent="." unique_id=1470302678 node_paths=PackedStringArray("PreviewsTowers")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+visible = false
 script = ExtResource("3_mdl7e")
 TowerScenes = Array[PackedScene]([ExtResource("4_70d11"), ExtResource("5_cw2d6"), ExtResource("6_khinc")])
 PreviewsTowers = [NodePath("Tower"), NodePath("ExposionTower"), NodePath("FreezeTower")]

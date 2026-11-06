@@ -4,11 +4,14 @@ using System;
 [GlobalClass]
 public partial class ExplosionComponent : DamagingComponent
 {
+	// радиус взрыва
 	[Export]
 	private float radius = 5f;
+	// сцена самого выстрела
 	[Export]
 	private PackedScene explosionScene; 
 
+	// переопределение метода нанесения урона
 	public override void ApplyDamage(Node3D target)
 	{
 		CollisionShape3D collision = GetNodeOrNull<CollisionShape3D>("CollisionShape3D");
@@ -29,6 +32,8 @@ public partial class ExplosionComponent : DamagingComponent
 		GetTree().CreateTimer(0.05f).Timeout += () => TryShoot();
 	
 	}
+
+	// попытка выстрела, если это возможно
 	private void TryShoot()
 	{
 		Godot.Collections.Array<Node3D> bodies = GetOverlappingBodies();
@@ -42,6 +47,6 @@ public partial class ExplosionComponent : DamagingComponent
 				h.TakeDamage(Damage);
 			}
 		}
-		GetParent().QueueFree(); // Удаляем снаряд после взрыва
+		GetParent().QueueFree();
 	}
 }

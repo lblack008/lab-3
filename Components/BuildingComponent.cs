@@ -5,24 +5,31 @@ using System.Linq;
 [GlobalClass]
 public partial class BuildingComponent : Node3D
 {
+	// сцены башен для установки
 	[Export]
 	private Godot.Collections.Array<PackedScene> TowerScenes = new Godot.Collections.Array<PackedScene>();
+	// стоимость башни
 	[Export]
 	private float TowerCost = 100f;
+	// предпросмотр башен перед их установкой
 	[Export]
 	private Godot.Collections.Array<CharacterBody3D> PreviewsTowers = new Godot.Collections.Array<CharacterBody3D>();
+	// выбранный тип башни
 	private int selectedTowerType = 0;
+
+	// определение, находится ли игрок в режиме строительства
 	private bool IsBuildingMode()
 	{
 		return Visible;
 	}
 
+	// в начале игры 
     public override void _Ready()
     {
-        Visible = false;
 		UpdatePreview(0);
     }
 
+	// выбор башни в зависимости от клавиши клавиатуры
     public override void _PhysicsProcess(double delta)
     {
         if (Input.IsActionJustPressed("build")) Visible = !Visible;
@@ -38,6 +45,7 @@ public partial class BuildingComponent : Node3D
 		}
     }
 
+	// выбор типа башни
 	private void SelectTowerType(int idx)
 	{
 		if (TowerScenes != null && idx >= 0 && idx < TowerScenes.Count)

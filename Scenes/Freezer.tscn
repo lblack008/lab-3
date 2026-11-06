@@ -29,7 +29,7 @@ mesh = SubResource("CapsuleMesh_rux61")
 [node name="FreezeComponent" type="Area3D" parent="." unique_id=1584243216]
 collision_layer = 2
 script = ExtResource("1_nujnu")
-FreezeScene = ExtResource("3_sv7pf")
+freezeScene = ExtResource("3_sv7pf")
 TargetGroup = "Enemy"
 metadata/_custom_type_script = "uid://dmroo4fbiydwa"
 

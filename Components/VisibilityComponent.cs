@@ -9,8 +9,11 @@ public partial class VisibilityComponent : Area3D
 	public MoveComponent moveComponent;
 	[Export]
 	public ShootComponent shootComponent;
+	// нода родителя 
 	private Node3D ParentNode;
+	// массив объектов в зоне коллизии
 	private Godot.Collections.Array<Node3D> detectedBodies = new Godot.Collections.Array<Node3D>();
+	// цель
 	private Node3D target;
 
 	// проверка работы коллизии 

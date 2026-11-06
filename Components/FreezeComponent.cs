@@ -4,13 +4,17 @@ using System;
 [GlobalClass]
 public partial class FreezeComponent : DamagingComponent
 {
+	// множитель скорости после попадания выстрела по врагу
 	[Export]
 	private float speedMultiplier = 0.5f;
+	// длительность эффекта
 	[Export]
 	private float duration = 3f;
+	// сцена снаряда с заморозкой
 	[Export]
 	private PackedScene freezeScene; 
 
+	// переопределение метода нанесения урона
 	public override void ApplyDamage(Node3D target)
 	{
 		HealthComponent h = target.GetNodeOrNull<HealthComponent>("HealthComponent");

@@ -27,7 +27,7 @@ noMetalLabel = NodePath("NoMetalLabel")
 _objects = Array[PackedScene]([ExtResource("2_l06dd"), ExtResource("8_np2u7"), ExtResource("2_l06dd")])
 
 [node name="Floor" type="Node3D" parent="." unique_id=1959413987]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.37184, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.37184048, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=1776765236]
 collision_mask = 0
@@ -59,7 +59,7 @@ size = 18.751009
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35012, -0.3234232, -3.8474436)
 
 [node name="Enemy2" parent="." unique_id=1904211263 instance=ExtResource("2_l06dd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.620098, -0.4154936, 3.3294644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9447453, -0.4154936, 3.921596)
 
 [node name="MetalLabel" type="Label" parent="." unique_id=1918184859]
 offset_right = 179.0

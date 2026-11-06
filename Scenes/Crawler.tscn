@@ -30,12 +30,6 @@ mesh = SubResource("SphereMesh_ng5j8")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.52590585, 0)
 shape = SubResource("SphereShape3D_roq8x")
 
-[node name="MoveComponent" type="Node" parent="." unique_id=174152592]
-script = ExtResource("1_g1227")
-Speed = 1.0
-StopRadius = 0.0
-metadata/_custom_type_script = "uid://ltajut3cc168"
-
 [node name="HealthComponent" type="Node" parent="." unique_id=1532336036]
 script = ExtResource("2_a0r0o")
 MaxHealth = 50.0
@@ -62,5 +56,11 @@ metadata/_custom_type_script = "uid://io52uof8hk24"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VisibilityComponent" unique_id=1737655612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16263092, 0)
 shape = SubResource("SphereShape3D_mti6b")
+
+[node name="MoveComponent" type="Node" parent="." unique_id=832650425]
+script = ExtResource("1_g1227")
+speed = 1.0
+stopRadius = 0.0
+metadata/_custom_type_script = "uid://ltajut3cc168"
 
 [connection signal="body_entered" from="DamagingComponent" to="DamagingComponent" method="OnBodyEntered"]

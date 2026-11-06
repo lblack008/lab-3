@@ -45,16 +45,10 @@ shape = SubResource("CapsuleShape3D_7fd37")
 script = ExtResource("1_5wwv6")
 metadata/_custom_type_script = "uid://cs8jkfmnm65sj"
 
-[node name="MoveComponent" type="Node" parent="." unique_id=2096472059]
-script = ExtResource("2_1vja8")
-Speed = 1.0
-metadata/_custom_type_script = "uid://ltajut3cc168"
-
 [node name="ShootComponent" type="Node3D" parent="." unique_id=1771946746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2111305, 0)
 script = ExtResource("3_iwav8")
 bulletScene = ExtResource("4_1i2q2")
-bulletSpeed = 20.0
 metadata/_custom_type_script = "uid://b40fiomr5x2yx"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShootComponent" unique_id=1852651129]
@@ -71,3 +65,8 @@ metadata/_custom_type_script = "uid://io52uof8hk24"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VisibityComponent" unique_id=2074587951]
 shape = SubResource("SphereShape3D_1exfc")
+
+[node name="MoveComponent" type="Node" parent="." unique_id=2096894040]
+script = ExtResource("2_1vja8")
+speed = 1.0
+metadata/_custom_type_script = "uid://ltajut3cc168"

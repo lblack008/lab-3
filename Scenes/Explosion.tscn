@@ -21,6 +21,7 @@ height = 1.0133286
 [node name="Explosion" type="Area3D" unique_id=1320266420]
 collision_layer = 2
 script = ExtResource("1_i4n8h")
+Speed = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1480770928]
 transform = Transform3D(0.99999994, 0, 3.8213714e-15, 3.8213705e-15, 4.371139e-08, -1, 0, 1, 4.371139e-08, 0, 0, 0)
@@ -29,7 +30,7 @@ mesh = SubResource("CapsuleMesh_rux61")
 [node name="ExplosionComponent" type="Area3D" parent="." unique_id=485196642]
 collision_layer = 2
 script = ExtResource("1_6o7x5")
-ExplosionScene = ExtResource("3_rux61")
+explosionScene = ExtResource("3_rux61")
 TargetGroup = "Enemy"
 metadata/_custom_type_script = "uid://bdfx8yiddwukc"
 

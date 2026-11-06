@@ -12,6 +12,7 @@ public partial class HealthComponent : Node
 	// текущее здоровье
 	protected float CurrentHealth = 100f;
 
+	// геттер текущего здоровья
 	public float GetCurrentHealth()
 	{
 		return CurrentHealth;
