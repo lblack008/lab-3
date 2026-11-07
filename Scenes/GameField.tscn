@@ -100,7 +100,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3958244, -0.4439475, -4.02
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.979897, -0.4439463, -4.1542926)
 
 [node name="Timer" type="Timer" parent="." unique_id=629421448]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="Tower" parent="." unique_id=1217166878 instance=ExtResource("1_hcwga")]

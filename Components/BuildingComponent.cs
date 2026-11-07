@@ -55,6 +55,7 @@ public partial class BuildingComponent : Node3D
 		}
 	}
 
+	// обновление видимости башен
 	private void UpdatePreview(int idx)
 	{
 		if (PreviewsTowers == null) return;
@@ -71,6 +72,7 @@ public partial class BuildingComponent : Node3D
 		}
 	}
 
+	// установка башни
 	private void Place()
 	{
 		if (GameManager.Instance.SpendMetal(TowerCost))
@@ -78,11 +80,9 @@ public partial class BuildingComponent : Node3D
 			CharacterBody3D newTower = TowerScenes[selectedTowerType].Instantiate<CharacterBody3D>();
 			GetTree().CurrentScene.AddChild(newTower);
 			
-			// Так как этот компонент привязан к игроку, 
-			// его GlobalPosition — это и есть нужная точка перед игроком
 			newTower.GlobalPosition = this.GlobalPosition;
 			
-			Visible = false; // Выходим из режима постройки
+			Visible = false; 
 		}
 	}
 }

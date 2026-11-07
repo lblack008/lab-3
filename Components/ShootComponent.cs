@@ -7,6 +7,7 @@ public partial class ShootComponent : Node3D
 	// параметры пули
 	[Export]
 	private PackedScene bulletScene;
+	// переменная для расчёта перезарядки выстрелов
 	[Export]
 	private float fireRate = 2f;
 
@@ -65,7 +66,7 @@ public partial class ShootComponent : Node3D
         if (GodotObject.IsInstanceValid(target))
 		{
 			// GD.Print("I caught an enemy!");
-			Vector3 TargetPos = new Vector3(target.GlobalPosition.X, this.GlobalPosition.Y + 0.05f, target.GlobalPosition.Z);
+			Vector3 TargetPos = target.GlobalPosition;
 			LookAt(TargetPos);
 			TurnOnCannon();
 		}
@@ -83,5 +84,4 @@ public partial class ShootComponent : Node3D
 			);
 		}
     }
-
 }

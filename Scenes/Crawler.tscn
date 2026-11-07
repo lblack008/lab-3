@@ -59,7 +59,7 @@ shape = SubResource("SphereShape3D_mti6b")
 
 [node name="MoveComponent" type="Node" parent="." unique_id=832650425]
 script = ExtResource("1_g1227")
-speed = 1.0
+speed = 3.0
 stopRadius = 0.0
 metadata/_custom_type_script = "uid://ltajut3cc168"
 
